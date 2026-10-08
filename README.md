@@ -11,6 +11,15 @@ Połączenia według schematu:
 Sprawdź poziom sygnału na PD6: jeśli Arduino-programator działa przy 5 V, na UPDI może pojawić się 5 V. Sam rezystor 4,7 kΩ nie obniża napięcia do 3,3 V. Użyj programatora działającego z logiką 3,3 V albo konwertera poziomów.
 W Arduino IDE wybierz ATmega4809 — na przykład przez megaTinyCore — oraz właściwy port i programator UPDI. Schemat opisuje połączenie sprzętowe; obsługę ATmega4809 musi też wspierać używana wersja firmware’u i narzędzi.
 
+```
+PD6 ── 4,7 kΩ ──┬── UPDI
+                │
+              katoda
+             Zener 3,6 V
+              anoda
+                │
+GND ────────────┴── GND
+```
 
 This fork of the repo has been stripped down and modified so that folders don't need to be renamed in order to compile with the Arduino IDE.
 
