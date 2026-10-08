@@ -2,6 +2,16 @@
 
 2026 by drosak -> poprawione rejestry na ATMEGA328P & ATMEGA328PB
 
+Możesz programować ATmega4809 zasilany z 3,3 V, jeśli programator JTAG2UPDI również podaje sygnał UPDI o poziomie 3,3 V. Masa programatora i układu docelowego musi być wspólna.
+Połączenia według schematu:
+- Arduino z firmware’em JTAG2UPDI: PD6 → rezystor 4,7 kΩ → UPDI ATmega4809.
+- Pin RX programatora połącz bezpośrednio z linią UPDI po stronie układu.
+- GND ↔ GND.
+- Zasil układ docelowy z 3,3 V. Nie łącz jego zasilania z 5 V programatora.
+Sprawdź poziom sygnału na PD6: jeśli Arduino-programator działa przy 5 V, na UPDI może pojawić się 5 V. Sam rezystor 4,7 kΩ nie obniża napięcia do 3,3 V. Użyj programatora działającego z logiką 3,3 V albo konwertera poziomów.
+W Arduino IDE wybierz ATmega4809 — na przykład przez megaTinyCore — oraz właściwy port i programator UPDI. Schemat opisuje połączenie sprzętowe; obsługę ATmega4809 musi też wspierać używana wersja firmware’u i narzędzi.
+
+
 This fork of the repo has been stripped down and modified so that folders don't need to be renamed in order to compile with the Arduino IDE.
 
 This is a firmware, that when uploaded on an atmega328p, or a similar AVR MCU, enables it to interface with avrdude using the jtagice Mk2 protocol via a serial link. In particular, you can use an Arduino to host this firmware.
